@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Namaste React</title>
+  </head>
+  <body>
+    <h2>Hello From Top of React</h2>
+
+    <div id="root">
+      <h1>It will be replaced with React rendering</h1>
+    </div>
+
+    <h2>Hello From Below of React</h2>
+
+    <!-- 
+        Manipulating HTML DOM using javascript 
+        <script>
+            const heading = document.createElement("h1");
+            heading.innerHTML = "Namaste React from javascript";
+            const root = document.getElementById("root");
+            root.appendChild(heading);
+        </script>
+    -->
+
+    <!-- Injectd React and ReactDOM using CDN -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <!--
+        This is react code in html file to manipulate DOM element with id root
+        <script>
+            const heading = React.createElement("h1", {}, "Namaste React from React");
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            root.render(heading);
+        </script> 
+    -->
+
+    <!-- This is code splitting [injected external js file which has React code] -->
+    <script src="./App.js"></script>
+  </body>
+</html>
