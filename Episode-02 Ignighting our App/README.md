@@ -1,3 +1,9 @@
+# Steps to ignite App
+
+- npm init
+- npm install -D parcel (-D = dev dependancy)
+- npx parcel index.html
+
 # npx parcel index.html
 
 - npx means executing a package
@@ -27,3 +33,17 @@
 # Browserslist
 
 - In this we can mention the browser version that should be compatible with our app
+
+# ^ and ~
+
+- ^ installs the minor upgrade of package version
+- ~ automatically upgrades to the major version of package
+
+# package-lock.json
+
+keeps the track of exact version that is being installed
+
+# Transitive Dependency
+
+As we install parcel as dependency, it comes with other dependencies as well like babel which has its own package.json
+This is known as transitive dependency
