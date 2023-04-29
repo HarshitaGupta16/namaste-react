@@ -3,6 +3,8 @@
 - npm init
 - npm install -D parcel (-D = dev dependancy)
 - npx parcel index.html
+- npm install react
+- npm i react-dom
 
 # npx parcel index.html
 
