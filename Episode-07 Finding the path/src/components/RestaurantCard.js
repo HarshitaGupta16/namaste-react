@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constants";
+import styles from "./Body.module.css";
 
 const RestaurantCard = ({ resData }) => {
   const {
@@ -16,11 +17,15 @@ const RestaurantCard = ({ resData }) => {
         src={CDN_URL + cloudinaryImageId}
         className="res-logo"
       />
-      <h3>{name}</h3>
-      <h4>{cuisines?.join(", ")}</h4>
-      <h4>{avgRating}</h4>
-      <h4>₹{costForTwo / 100} For Two</h4>
-      <h4>{deliveryTime} minutes</h4>
+      <div className={styles.resName}>{name}</div>
+      <div className={styles.resCuisines}>{cuisines?.join(", ")}</div>
+      <div className={styles.resInfo}>
+        <span className={styles.resRating}>{avgRating}</span>
+        <div>•</div>
+        <h4>{deliveryTime} minutes</h4>
+        <div>•</div>
+        <h4>₹{costForTwo / 100} For Two</h4>
+      </div>
     </div>
   );
 };

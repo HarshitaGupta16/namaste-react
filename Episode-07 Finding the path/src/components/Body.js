@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import styles from "./Body.module.css";
 
 const Body = () => {
   // Local State variable - Super powerful variable
@@ -15,7 +16,6 @@ const Body = () => {
   // console.log("Body Rendered");
 
   useEffect(() => {
-    // console.log("useeffect rendered");
     fetchData();
   }, []);
 
@@ -79,6 +79,7 @@ const Body = () => {
           <Link
             to={"/restaurant/" + restaurant.data.id}
             key={restaurant.data.id}
+            className={styles.resLink}
           >
             <RestaurantCard resData={restaurant} />
           </Link>

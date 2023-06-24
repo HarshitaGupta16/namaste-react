@@ -1,3 +1,8 @@
+body {
+  font-family: ProximaNova, arial, Helvetica Neue, sans-serif;
+  letter-spacing: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -34,23 +39,30 @@
 .res-container {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .res-card {
   width: 250px;
-  height: 350px;
   margin: 5px;
-  padding: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+  contain: content;
 }
 
 .res-card:hover {
-  border: 1px solid gray;
   cursor: pointer;
+  border-color: #d3d5df;
+  box-shadow: 0 4px 7px 0 rgba(218, 220, 230, 0.6);
 }
 
 .res-logo {
   width: 100%;
   padding: 4px;
+  align-self: center;
 }
 
 h4 {
