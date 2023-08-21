@@ -26,13 +26,13 @@ const Body = () => {
     const json = await data.json();
 
     // Optional Chaining
-    json?.data?.cards[2]?.cardType === "seeAllRestaurants"
-      ? setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards)
-      : setListOfRestaurants(json?.data?.cards[0]?.data?.data?.cards);
+    setListOfRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
 
-    json?.data?.cards[2]?.cardType === "seeAllRestaurants"
-      ? setListOfFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
-      : setListOfFilteredRestaurants(json?.data?.cards[0]?.data?.data?.cards);
+    setListOfFilteredRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   // Conditional Rendering
@@ -40,7 +40,7 @@ const Body = () => {
   //   return <Shimmer />;
   // }
 
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -53,7 +53,7 @@ const Body = () => {
           <button
             onClick={() => {
               let filteredList = listOfRestaurants.filter((res) =>
-                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setListOfFilteredRestaurants(filteredList);
               setSearchText("");
@@ -66,9 +66,9 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => res.data.avgRating > 4
+              (res) => res.info.avgRating > 4
             );
-            setListOfRestaurants(filteredList);
+            setListOfFilteredRestaurants(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -77,11 +77,11 @@ const Body = () => {
       <div className="res-container">
         {listOfFilteredRestaurants?.map((restaurant) => (
           <Link
-            to={"/restaurant/" + restaurant.data.id}
-            key={restaurant.data.id}
+            to={"/restaurant/" + restaurant?.info.id}
+            key={restaurant?.info.id}
             className={styles.resLink}
           >
-            <RestaurantCard resData={restaurant} />
+            <RestaurantCard resData={restaurant?.info} />
           </Link>
         ))}
       </div>

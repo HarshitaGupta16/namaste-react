@@ -153,3 +153,13 @@ h4 {
 .search {
   margin-right: 40px;
 }
+
+.alt-image {
+  width: 250px;
+  height: 115px;
+  margin: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  contain: content;
+}
