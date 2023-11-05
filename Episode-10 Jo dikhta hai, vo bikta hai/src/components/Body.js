@@ -4,17 +4,39 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import styles from "./Body.module.css";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import useListOfRestaurants from "../utils/useListOfRestaurants";
 
 const Body = () => {
   // Local State variable - Super powerful variable
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [listOfFilteredRestaurants, setListOfFilteredRestaurants] = useState(
+    []
+  );
 
   const onlineStatus = useOnlineStatus();
-  const [listOfRestaurants, listOfFilteredRestaurants] = useListOfRestaurants();
 
   // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
   // console.log("Body Rendered");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+
+    // Optional Chaining
+    setListOfRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    setListOfFilteredRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   // Conditional Rendering
   // if (listOfRestaurants.length === 0) {
@@ -41,6 +63,7 @@ const Body = () => {
               let filteredList = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
+              setListOfFilteredRestaurants(filteredList);
               setSearchText("");
             }}
             className="m-2 bg-gray-500 px-4 py-1 rounded-md text-white hover:bg-gray-400"
@@ -55,6 +78,7 @@ const Body = () => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4
               );
+              setListOfFilteredRestaurants(filteredList);
             }}
           >
             Top Rated Restaurants
